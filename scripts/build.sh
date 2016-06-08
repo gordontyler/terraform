@@ -51,6 +51,7 @@ gox \
     .
 
 # Move all the compiled things to the $GOPATH/bin
+OLDGOPATH=$GOPATH
 GOPATH=${GOPATH:-$(go env GOPATH)}
 case $(uname) in
     CYGWIN*)
@@ -60,6 +61,7 @@ esac
 OLDIFS=$IFS
 IFS=: MAIN_GOPATH=($GOPATH)
 IFS=$OLDIFS
+GOPATH=$OLDGOPATH
 
 # Create GOPATH/bin if it's doesn't exists
 if [ ! -d $MAIN_GOPATH/bin ]; then
